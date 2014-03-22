@@ -7,7 +7,6 @@
 (strokes/bootstrap)
 
 (defn item [state owner {:keys [viewport] :as opts}]
-  (prn viewport)
   (om/component
     (html [:circle {:stroke "#777777" :fill "transparent" :stroke-width "3px" :cx "400" :cy "200" :r"190"}])))
 

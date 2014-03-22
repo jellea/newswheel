@@ -46,18 +46,22 @@
         "&format=json&url="))
 
 (defn parse-embedly [resp]
-  [
-    (:title resp )
-    (:authors resp )
-    (:description resp )
-    (:content resp )])
+  {
+    :title ( :title resp )
+    :authors ( :authors resp )
+    :description ( :description resp )
+    :content ( :content resp )
+    :image (:url (first (:images resp)))
+   })
 
 (defn query-url [q]
   (str embedly-api-url q))
 
 (defn upd-embed [resp]
-  (swap! app-state conj (:article-info app-state)
-   (parse-embedly (js->clj resp :keywordize-keys true))))
+  (swap! app-state 
+         (fn [st] (update-in st [:article-info]
+                     #(conj %
+   (parse-embedly (js->clj resp :keywordize-keys true)))))))
 
 (defn req-handler [response]
   (.log js/console (js->clj response)))
@@ -68,15 +72,20 @@
   (.send (goog.net.Jsonp. (query-url source) )
     "" callback error-callback))
 
+(defn get-urls [articles]
+  "Find all urls in the current topic"
+  (let [urls (map #(:url %) 
+                  ((keyword (:current-topic @app-state)) articles))]
+        (apply list urls)
+        ))
+
 (defn upd-all []
-  (doseq [url (:urls @app-state)]
+  (doseq [url (get-urls (:articles @app-state))]
        (retrieve-embed url upd-embed req-handler)))
 
 
 (upd-all)
 
-;(retrieve-embed test-url upd-embed req-handler)
-;
 (defn main [state owner]
   (reify
     ;om/IDidMount
