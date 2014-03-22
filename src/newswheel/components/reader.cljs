@@ -7,13 +7,16 @@
 (defn item [state owner]
   (om/component
     (html [:section
-            [:h3 "Title"]
-            [:h5 "subtitle"]
-            [:p "lorem"]])))
+            [:h3 (:title article)]
+            [:h6 (:authors article)]
+            [:h5 (:description article)]
+            [:div (:content article)]])))
 
 (defn main [state owner]
+  (prn (:urls state))
   (om/component
     (html [:aside#reader
             (om/build item {})
             (om/build item {})
             (om/build item {})])))
+ 

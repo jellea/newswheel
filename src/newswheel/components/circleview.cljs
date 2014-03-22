@@ -17,5 +17,5 @@
 (defn main [state owner]
   (om/component
     (html [:div.circle-view
-            (om/build nav {})
+            (om/build nav state {})
             [:h2 "Circle"]])))
