@@ -1,0 +1,58 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+a {
+  text-decoration: underline;
+}
+body {
+  font-family: 'Roboto Slab', serif;
+  background-color: #171717;
+  color: #fff;
+  overflow: hidden;
+}
+.container {
+  display: flex;
+  display: -webkit-flex;
+}
+.container .circle-view {
+  flex: 1 1 auto;
+  -webkit-flex: 1 1 auto;
+}
+.container .circle-view .menu {
+  padding: 3em;
+  position: absolute;
+}
+.container .circle-view .menu .nav > a {
+  line-height: 2em;
+  display: block;
+}
+.container .circle-view .graph {
+  width: 100%;
+  height: 100vh;
+}
+.container #reader {
+  box-shadow: inset 4px 0 12px 0px rgba(0,0,0,0.23);
+  background-color: #fff;
+  height: 100%;
+  color: #222;
+  width: 30em;
+  font-family: 'Lora', serif;
+  overflow-y: scroll;
+  transition: all 0.3s ease-out;
+}
+.container #reader:hover {
+  width: 30.3em;
+}
+.container #reader section {
+  min-height: 100vh;
+  padding: 2em;
+}
+.container #reader section h3,
+.container #reader section h5,
+.container #reader section p {
+  margin-bottom: 0.6em;
+}
+.container #reader section h5 {
+  font-weight: normal;
+}

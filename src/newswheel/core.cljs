@@ -5,6 +5,7 @@
             [om.dom :as dom :include-macros true]
             [sablono.core :as html :refer-macros [html]]
             [newswheel.components.circleview :as circleview]
+            [newswheel.data]
             [newswheel.components.reader :as reader]
             )
   (:import [goog.net Jsonp]
@@ -21,43 +22,15 @@
     {:hover-article ""
      :selected-article ""
      :urls [test-url]
-     :article-info []}
+     :article-info []
+     :current-topic "TwitterBlock"
+     :articles newswheel.data/data
+     }
     ))
 
 ;; state: list of article sources + hover-article + selected-article
 
-(defn jsonp [uri]
-  (let [out (chan)
-        req (Jsonp. (Uri. uri))]
-    (.send req nil (fn [res] (put! out res)))
-    out))
 
-;; Basic structures
-(defrecord Article [title authors description content])
-
-;; Embedly stuff
-(def reader-width "600")
-
-(def embedly-api-key "30c971bdaf234365b7ed9ce8f3817048")
-
-(def embedly-api-url
-  (str "http://api.embed.ly/1/extract?key="
-       embedly-api-key
-        "&format=json&url="))
-
-(defn parse-embedly [resp]
-  ([
-    (aget resp "title")
-    (aget resp "authors")
-    (aget resp "description")
-    (aget resp "content")]))
-
-(defn query-url [q]
-  (str embedly-api-url q))
- 
-(defn parse-urls [urls]
-  (map parse-embedly 
-    (map query-url urls)))
   
 
 
@@ -65,20 +38,18 @@
  
 (defn main [state owner]
   (reify
-    om/IDidMount
-    (did-mount [_]
-      (om/transact! state
-                  #(assoc % :article-info
-                    (parse-urls (:urls %)))))
+    ;om/IDidMount
+    ;(did-mount [_]
+      ;(om/transact! state
+                  ;#(assoc % :article-info
+                    ;(parse-urls (:urls %)))))
     om/IRender
     (render [_]
     (html
-      [:div
+      [:div.container
         (om/build circleview/main state {})
         (om/build reader/main state {})]))))
 
- 
- 
 (om/root
   main
   app-state
