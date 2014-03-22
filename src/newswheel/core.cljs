@@ -6,7 +6,7 @@
             [sablono.core :as html :refer-macros [html]]
             [newswheel.components.circleview :as circleview]
             [newswheel.components.reader :as reader]
-            ))
+            )
   (:import [goog.net Jsonp]
            [goog Uri]))
 
