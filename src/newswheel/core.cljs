@@ -6,18 +6,19 @@
             [sablono.core :as html :refer-macros [html]]
             [newswheel.components.circleview :as circleview]
             [newswheel.components.reader :as reader]
+            [ajax.core :refer [GET POST]]
             )
   (:import [goog.net Jsonp]
            [goog Uri]))
 
 (enable-console-print!)
 
- 
+
 (def test-url
   "http://www.newyorker.com/arts/critics/atlarge/2014/03/24/140324crat_atlarge_menand")
- 
-(def app-state 
-  (atom 
+
+(def app-state
+  (atom
     {:hover-article ""
      :selected-article ""
      :urls [test-url]
@@ -46,30 +47,44 @@
         "&format=json&url="))
 
 (defn parse-embedly [resp]
-  ([
-    (aget resp "title")
-    (aget resp "authors")
-    (aget resp "description")
-    (aget resp "content")]))
+  [
+    (:title resp )
+    (:authors resp )
+    (:description resp )
+    (:content resp )])
 
 (defn query-url [q]
   (str embedly-api-url q))
- 
-(defn parse-urls [urls]
-  (map parse-embedly 
-    (map query-url urls)))
-  
 
+(defn upd-embed [resp]
+  (swap! app-state conj (:article-info app-state)
+   (parse-embedly (js->clj resp :keywordize-keys true))))
+
+(defn req-handler [response]
+  (.log js/console (js->clj response)))
 
 ;; Sanity checks
- 
+
+(defn retrieve-embed [source callback error-callback]
+  (.send (goog.net.Jsonp. (query-url source) )
+    "" callback error-callback))
+
+(defn upd-all []
+  (doseq [url (:urls @app-state)]
+       (retrieve-embed url upd-embed req-handler)))
+
+
+(upd-all)
+
+;(retrieve-embed test-url upd-embed req-handler)
+;
 (defn main [state owner]
   (reify
-    om/IDidMount
-    (did-mount [_]
-      (om/transact! state
-                  #(assoc % :article-info
-                    (parse-urls (:urls %)))))
+    ;om/IDidMount
+    ;(did-mount [_]
+      ;(om/transact! state
+                  ;#(assoc % :article-info
+                    ;(parse-urls (:urls %)))))
     om/IRender
     (render [_]
     (html
@@ -77,9 +92,10 @@
         (om/build circleview/main state {})
         (om/build reader/main state {})]))))
 
- 
- 
+
+
 (om/root
   main
   app-state
   {:target (. js/document (getElementById "app"))})
+

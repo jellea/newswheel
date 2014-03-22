@@ -5,6 +5,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/clojurescript "0.0-2173"]
                  [org.clojure/core.async "0.1.267.0-0d7780-alpha"]
+                 [cljs-ajax "0.2.3"]
                  [om "0.5.3"]
                  [net.drib/strokes "0.5.1"]
                  [sablono "0.2.6"]

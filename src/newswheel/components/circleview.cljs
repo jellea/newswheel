@@ -5,6 +5,7 @@
             ))
 
 (defn nav [state owner]
+  (prn state)
   (om/component
     (html [:div.menu
             [:div.logo "O"]
