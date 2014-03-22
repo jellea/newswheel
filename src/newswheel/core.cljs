@@ -5,6 +5,7 @@
             [om.dom :as dom :include-macros true]
             [sablono.core :as html :refer-macros [html]]
             [newswheel.components.circleview :as circleview]
+            [newswheel.data]
             [newswheel.components.reader :as reader]
             [ajax.core :refer [GET POST]]
             )
@@ -22,16 +23,14 @@
     {:hover-article ""
      :selected-article ""
      :urls [test-url]
-     :article-info []}
+     :article-info []
+     :current-topic "TwitterBlock"
+     :articles newswheel.data/data
+     }
     ))
 
 ;; state: list of article sources + hover-article + selected-article
 
-(defn jsonp [uri]
-  (let [out (chan)
-        req (Jsonp. (Uri. uri))]
-    (.send req nil (fn [res] (put! out res)))
-    out))
 
 ;; Basic structures
 (defrecord Article [title authors description content])
@@ -88,11 +87,9 @@
     om/IRender
     (render [_]
     (html
-      [:div
+      [:div.container
         (om/build circleview/main state {})
         (om/build reader/main state {})]))))
-
-
 
 (om/root
   main
