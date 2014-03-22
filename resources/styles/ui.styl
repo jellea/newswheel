@@ -4,9 +4,11 @@
 
 a
   text-decoration             underline
+  cursor                      pointer
 
 body
   font-family                 'Roboto Slab', serif
+  font-weight                 200
   background-color            #171717
   color                       #fff
   overflow                    hidden
@@ -23,9 +25,28 @@ body
       padding                 3em
       position                absolute
 
-      .nav > a
+      h3
+        display               inline-block
+        vertical-align        middle
+        margin-left           1em
+        top                   3em
+        position              absolute
+
+      .nav *
+        text-align            center
+        margin-top            1em
+        font-size             0.9em
         line-height           2em
         display               block
+
+      .nextbtn:hover ~ .title
+        opacity               1
+
+      span.title
+        margin-top            0
+        opacity               0
+        transition            opacity 0.2s ease-out
+        color                 grey
 
     .graph
       width                   100%
@@ -48,8 +69,9 @@ body
       min-height              100vh
       padding                 2em
 
-      h3,h5,p
+      h3,h5
         margin-bottom         0.6em
+        line-height           1.5em
 
       h5
         font-weight           normal

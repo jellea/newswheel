@@ -25,6 +25,7 @@
      :urls [test-url]
      :article-info []
      :current-topic "TwitterBlock"
+     :next-topic "NSA"
      :articles newswheel.data/data
      }
     ))
@@ -98,10 +99,9 @@
     (html
       [:div.container
         (om/build circleview/main state {})
-        (om/build reader/main state {})]))))
+        (om/build reader/main (:articles state) {})]))))
 
 (om/root
   main
   app-state
   {:target (. js/document (getElementById "app"))})
-

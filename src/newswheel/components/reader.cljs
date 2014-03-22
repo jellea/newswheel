@@ -2,19 +2,19 @@
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
             [sablono.core :as html :refer-macros [html]]
+            [goog.text.LoremIpsum]
             ))
 
 (defn item [state owner]
-  (om/component
-    (html [:section
-            [:h3 (:title state)]
-            [:h6 (:authors state)]
-            [:h5 (:description state)]
-            [:div (:content state)]])))
+  (let [lorem     (goog.text.LoremIpsum.)
+        sentence  (.generateParagraph lorem)]
+    (om/component
+      (html [:section
+              [:h3 (:title state)]
+              [:h5 (:subtitle state)]
+              [:div sentence]]))))
 
 (defn main [state owner]
   (om/component
     (html [:aside#reader
-            (om/build item {})
-            (om/build item {})
-            (om/build item {})])))
+            (om/build-all item (second (second state)) {})])))
