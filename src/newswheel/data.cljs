@@ -287,7 +287,7 @@
               :perspective "Hope"
             }
           ]
-"Crimea" [
+:Crimea [
            {
               :type "article"
               :title "People ask minister of defense to act"

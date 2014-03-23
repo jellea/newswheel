@@ -42,6 +42,15 @@
 (def colors3 (colors2 10))
 (def colors4 (colors2 20))
 
+(defn persp-to-color [p]
+  (case p
+    "Hope" {:hex "1abc9c"} 
+    "Ukrainian view" {:hex "7f8c8d" :bright false} 
+    "Conspiracy"  {:hex "ecf0f1"} 
+    "Russian view" {:hex "bdc3c7"}
+    "test1" {:hex "2ecc71"}
+    {:hex "f1c40f"}))
+
 (defn get-radians [inet]
          (map #(/ (* (* 2 Math/PI) %) inet)
            (range inet)))
@@ -78,9 +87,10 @@
     om/IRender
     (render [_]
       (let [circle-data
-             (map #(assoc %1 :color (:hex %2))
+             (map (fn [el] 
+                     (assoc el :color (:hex (persp-to-color (:perspective el)))))
                (sort-by #(:perspective %) (second (first (:articles state))))
-               colors3 )
+               )
             viewport {:vwidth (.-innerWidth js/window)
                       :vheight (.-innerHeight js/window)}
 
