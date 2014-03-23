@@ -60,6 +60,7 @@ body {
   width: 30em;
   font-family: 'Lora', serif;
   overflow-y: scroll;
+  overflow-x: hidden;
   transition: all 0.3s ease-out;
 }
 .container #reader:hover {

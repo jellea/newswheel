@@ -7,17 +7,22 @@
 (strokes/bootstrap)
 
 (defn get-radians [inet]
-             (map #(/ (*(* 2 Math/pi) %) inet)
-             (range inet)))
+         (map #(/ (* (* 2 Math/PI) %) inet)
+           (range inet)))
 
-(defn get-points [inet, [x0, y0]]
-            map #([(+ x0 (* r (cos %))),
-                   (+ y0 (* r (sin %)))])
-            (get-radians inet))
+(defn get-points [inet x0 y0 r]
+        (map (fn [radian] [(+ x0 (* r (Math/cos radian)))
+               (+ y0 (* r (Math/sin radian)))])
+          (get-radians inet)))
 
-(defn item [state owner {:keys [x y r] :as opts}]
+(defn get-rotates [inet]
+  (map (fn [i] (- 90 (* i (/ 360 inet))))
+    (range inet)))
+
+(defn item [state owner {:keys [coord rotates x y r] :as opts}]
+  (prn (:rotates state))
   (om/component
-    (html [:circle {:stroke "#777777" :fill "transparent" :stroke-width "3px" :cx x :cy y :r r}])))
+    (html [:rect {:fill "#ff0000" :x 100 :y 100 :transform (str "rotate(" (:rotates state) ")") :width "60px" :height "3px"}])))
 
 (defn circle [state owner]
   (let [circle-data (second (first (:articles state)))
@@ -25,13 +30,17 @@
                   :vheight (.-innerHeight js/window)}
         r (/ (if (< (:vwidth viewport) (:vheight viewport)) (:vwidth viewport) (:vheight viewport)) 3)
         x (/ (- (int (:vwidth viewport)) 485) 2)
-        y (/ (:vheight viewport) 2)]
+        y (/ (:vheight viewport) 2)
+        points (get-points (count circle-data) x y r)
+        rotates (get-rotates (count circle-data))
+        num-circ (map-indexed #(assoc %2 :coord (nth points %1) :rotates (nth rotates %1)) circle-data)]
 
     (om/component
       (html [:svg.graph
               [:circle ""]
               [:text.knockout {:x (- x  r) :y y :width (str r "px") :fill "white"} "A Chinese satellite has spotted a large object floating in the Indian Ocean"]
-              [:g (om/build-all item circle-data {:opts {:x x :y y :r r}})]]))))
+              [:circle {:stroke "#777777" :fill "transparent" :stroke-width "3px" :cx x :cy y :r r}]
+              [:g (om/build-all item num-circ {:opts {:x x :y y :r r}})]]))))
 
 (defn nav [state owner]
   (om/component
