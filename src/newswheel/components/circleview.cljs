@@ -54,7 +54,7 @@
             viewport {:vwidth (.-innerWidth js/window)
                       :vheight (.-innerHeight js/window)}
 
-            r (/ (if (< (:vwidth viewport) (:vheight viewport)) (:vwidth viewport) (:vheight viewport)) 3.5)
+            r (/ (if (< (:vwidth viewport) (:vheight viewport)) (:vwidth viewport) (:vheight viewport)) 3.2)
             x (/ (- (int (:vwidth viewport)) 485) 2)
             y (/ (:vheight viewport) 2)
             points (get-points (count circle-data) x y r)
