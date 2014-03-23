@@ -4,8 +4,7 @@
             [sablono.core :as html :refer-macros [html]]
             [goog.text.LoremIpsum]
             [clojure.string :as str]
-            [hickory.core :as hick]
-            ))
+            [hickory.core :as hick]))
 
 
 (defn item [state owner]
@@ -16,9 +15,8 @@
               [:h5 (:description state)]
               [:div (hick/as-hiccup (hick/parse (:content state)))]])))
 
-
 (defn main [state owner]
-  (prn (second (second state)))
+  (prn state)
   (om/component
     (html [:aside#reader
             (om/build-all item state {})])))
