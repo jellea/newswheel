@@ -21,6 +21,32 @@ body {
   flex: 1 1 auto;
   -webkit-flex: 1 1 auto;
 }
+.container .circle-view .spot:hover {
+  fill: #fff;
+}
+.container .circle-view #circletext {
+  width: 20em;
+  position: absolute;
+  top: 45%;
+  right: 50%;
+  margin-right: 5em;
+  text-align: center;
+}
+.container .circle-view #circletext .title {
+  font-size: 1.1em;
+  line-height: 2em;
+}
+.container .circle-view #circletext .subtitle {
+  line-height: 3em;
+  font-size: 0.9em;
+  color: #eee;
+}
+.container .circle-view #circletext .clicktoread {
+  font-size: 0.9em;
+  font-weight: normal;
+  cursor: pointer;
+  margin-top: 50px;
+}
 .container .circle-view .menu {
   padding: 3em;
   position: absolute;
