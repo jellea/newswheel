@@ -49,7 +49,7 @@
 (defn parse-embedly [resp]
   {
     :title ( :title resp )
-    :authors ( :authors resp )
+    :authors ( map #(:name %) (:authors resp) )
     :description ( :description resp )
     :content ( :content resp )
     :image (:url (first (:images resp)))
@@ -99,7 +99,7 @@
     (html
       [:div.container
         (om/build circleview/main state {})
-        (om/build reader/main (:articles state) {})]))))
+        (om/build reader/main (:article-info state) {})]))))
 
 (om/root
   main
