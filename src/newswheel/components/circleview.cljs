@@ -9,13 +9,38 @@
 
 (strokes/bootstrap)
 
-(def colors [{:hex "34495e" :bright false} {:hex "16a085" :bright false} {:hex "27ae60"  :bright false}
-             {:hex "2980b9" :bright false} {:hex "8e44ad" :bright false} {:hex "2c3e50" :bright false}
-             {:hex "f1c40f"} {:hex "e67e22"} {:hex "e74c3c" :bright false}
-             {:hex "ecf0f1"} {:hex "95a5a6"} {:hex "f39c12"}
-             {:hex "d35400" :bright false} {:hex "c0392b" :bright false} {:hex "bdc3c7"}
-             {:hex "7f8c8d" :bright false} {:hex "1abc9c"} {:hex "2ecc71"}
-             {:hex "3498db"} {:hex "9b59b6"}])
+(def colors [{:hex "34495e" :bright false} 
+              {:hex "16a085" :bright false}
+              {:hex "27ae60"  :bright false}
+             {:hex "2980b9" :bright false} 
+              {:hex "8e44ad" :bright false} 
+             ; {:hex "2c3e50" :bright false} 
+             {:hex "f1c40f"}
+             {:hex "e67e22"} 
+             {:hex "e74c3c" :bright false}
+             {:hex "ecf0f1"} 
+             {:hex "95a5a6"}
+             {:hex "f39c12"}
+             {:hex "d35400" :bright false} 
+             {:hex "c0392b" :bright false} 
+             {:hex "bdc3c7"}
+             {:hex "7f8c8d" :bright false} 
+             {:hex "1abc9c"} 
+             {:hex "2ecc71"}
+             {:hex "3498db"} 
+             {:hex "9b59b6"}])
+
+(defn colors2 [n]
+  (if (< n 0)
+    []
+    (concat 
+      (colors2 (- n 1))
+      (replicate (rand-int 4)
+        (get colors
+          (rand-int 10))))))
+
+(def colors3 (colors2 10))
+(def colors4 (colors2 20))
 
 (defn get-radians [inet]
          (map #(/ (* (* 2 Math/PI) %) inet)
@@ -34,11 +59,12 @@
   (om/transact! state (fn [st] (assoc st :hover-article {:title title
                                                 :subtitle subtitle}))))
 
-(defn item [{:keys [coord rotates title subtitle x y r]} owner
+(defn item [{:keys [coord color rotates title subtitle x y r]} owner
             {:keys [state] :as opts}]
+  (prn color)
   (om/component
     (html [:rect.spot {:onMouseOver #(update-current-hover {:title title :subtitle subtitle} state)
-                       :fill "#ff0000" :x 0 :y 0
+                       :fill (str "#" color) :x 0 :y 0
                        :transform (str "translate(" (first coord) " " (second coord) "), rotate(" rotates ")") 
                        :width "80px" :height "7px"}])))
 
@@ -52,8 +78,9 @@
     om/IRender
     (render [_]
       (let [circle-data
-             (map #(assoc % :color (:hex (rand-nth color)))
-               (sort-by #(:perspective %) (second (first (:articles state)))))
+             (map #(assoc %1 :color (:hex %2))
+               (sort-by #(:perspective %) (second (first (:articles state))))
+               colors3 )
             viewport {:vwidth (.-innerWidth js/window)
                       :vheight (.-innerHeight js/window)}
 
