@@ -40,7 +40,7 @@
 ;; Embedly stuff
 (def reader-width "600")
 
-(def embedly-api-key "30c971bdaf234365b7ed9ce8f3817048")
+(def embedly-api-key "ac94988c1ff34648a1891c480378987b")
 
 (def embedly-api-url
   (str "http://api.embed.ly/1/extract?key="

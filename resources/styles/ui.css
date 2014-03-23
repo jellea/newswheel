@@ -46,6 +46,9 @@ body {
   font-weight: normal;
   cursor: pointer;
   margin-top: 50px;
+  top: 137px;
+  position: absolute;
+  width: 100%;
 }
 .container .circle-view .menu {
   padding: 3em;
