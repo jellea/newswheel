@@ -16,31 +16,48 @@
           (get-radians inet)))
 
 (defn get-rotates [inet]
-  (map (fn [i] (- 90 (* i (/ 360 inet))))
+  (map (fn [i] (+ 0 (* i (/ 360 inet))))
     (range inet)))
 
 (defn item [state owner {:keys [coord rotates x y r] :as opts}]
-  (prn (:rotates state))
   (om/component
-    (html [:rect {:fill "#ff0000" :x 100 :y 100 :transform (str "rotate(" (:rotates state) ")") :width "60px" :height "3px"}])))
+    (html [:rect.spot {:fill "#ff0000" :x 0 :y 0 :transform (str "translate(" (first (:coord state)) " " (second (:coord state)) "), rotate(" (:rotates state) ")") :width "80px" :height "7px"}])))
 
 (defn circle [state owner]
-  (let [circle-data (second (first (:articles state)))
-        viewport {:vwidth (.-innerWidth js/window)
-                  :vheight (.-innerHeight js/window)}
-        r (/ (if (< (:vwidth viewport) (:vheight viewport)) (:vwidth viewport) (:vheight viewport)) 3)
-        x (/ (- (int (:vwidth viewport)) 485) 2)
-        y (/ (:vheight viewport) 2)
-        points (get-points (count circle-data) x y r)
-        rotates (get-rotates (count circle-data))
-        num-circ (map-indexed #(assoc %2 :coord (nth points %1) :rotates (nth rotates %1)) circle-data)]
+  (reify
+    om/IDidUpdate
+    (did-update [_ _ _]
+      (let [player (. js/document (getElementById "mask"))]
+        (.setAttribute player "xlink:href" "http://lorempixel.com/output/abstract-q-c-640-480-3.jpg"))
+    )
+    om/IRender
+    (render [_]
 
-    (om/component
-      (html [:svg.graph
-              [:circle ""]
-              [:text.knockout {:x (- x  r) :y y :width (str r "px") :fill "white"} "A Chinese satellite has spotted a large object floating in the Indian Ocean"]
-              [:circle {:stroke "#777777" :fill "transparent" :stroke-width "3px" :cx x :cy y :r r}]
-              [:g (om/build-all item num-circ {:opts {:x x :y y :r r}})]]))))
+
+      (let [circle-data (second (first (:articles state)))
+            viewport {:vwidth (.-innerWidth js/window)
+                      :vheight (.-innerHeight js/window)}
+            r (/ (if (< (:vwidth viewport) (:vheight viewport)) (:vwidth viewport) (:vheight viewport)) 3.5)
+            x (/ (- (int (:vwidth viewport)) 485) 2)
+            y (/ (:vheight viewport) 2)
+            points (get-points (count circle-data) x y r)
+            rotates (get-rotates (count circle-data))
+            num-circ (map-indexed #(assoc %2 :coord (nth points %1) :rotates (nth rotates %1)) circle-data)]
+
+      ;(-> d3 (.select "#circletext")
+        ;(.attr {:text-align "justified"
+         ;:line-height "125%" :wrap-margin "25"
+         ;:shape-inside "url(#mask)"}))
+
+      (html
+        [:div#grr
+          [:div#circletext
+            [:p.title "A Chinese satellite has spotted a large object floating in the Indian Ocean"]
+            [:p.subtitle "@mashable on twitter"]
+            [:p.clicktoread "click to read"]]
+          [:svg#graph
+            [:circle#mask {:fill "transparent" :stroke-width "3px" :cx x :cy y :r r}]
+            [:g (om/build-all item num-circ {:opts {:x x :y y :r r}})]]])))))
 
 (defn nav [state owner]
   (om/component
