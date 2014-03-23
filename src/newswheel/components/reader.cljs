@@ -13,6 +13,7 @@
               [:h3 (:title state)]
               [:em (str "By " (:authors state))]
               [:h5 (:description state)]
+              [:img {:href (:image state)}]
               [:div (hick/as-hiccup (hick/parse (:content state)))]])))
 
 (defn main [state owner]
