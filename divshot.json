@@ -1,0 +1,7 @@
+{
+  "name": "newswheel",
+  "root": "./",
+  "error_page": "n",
+  "cache_control": {},
+  "routes": {}
+}

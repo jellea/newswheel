@@ -5,7 +5,7 @@
             {
               :type "twitter"
               :title "Istanbul residents spray-paint Twitter-ban work-around info (DNS) on apartment building"
-              :subtitle "@dlepeska"
+              :subtitle "Twitter: @dlepeska"
               :url "https://twitter.com/dlepeska/status/447023045933547520"
               :perspective "test1"
             }
@@ -27,7 +27,7 @@
             {
               :type "twitter"
               :title "Tweeting up 138% in Turkey after Twitter was banned."
-              :subtitle "@mikko"
+              :subtitle "Twitter: @mikko"
               :url "https://twitter.com/mikko/status/447300415273852928"
               :perspective "test1"
             }
@@ -55,7 +55,7 @@
             {
               :type "twitter"
               :title "FEMEN spots on Erdogan"
-              :subtitle "@FEMEN_Turkey"
+              :subtitle "Twitter: @FEMEN_Turkey"
               :url "https://twitter.com/FEMEN_Turkey/status/447294742238208002"
               :perspective "test2"
             }
@@ -76,7 +76,7 @@
             {
               :type "twitter"
               :title "Gül: Social media platforms can not be closed completely"
-              :subtitle "@cbabdullahgul"
+              :subtitle "Twitter: @cbabdullahgul"
               :url "https://twitter.com/cbabdullahgul/status/446940887462199296"
               :perspective "test3"
             }
@@ -111,7 +111,7 @@
             {
               :type "twitter"
               :title "Canada's Embassy in Ankara is proud to take part in the increased use of Twitter in Turkey"
-              :subtitle "@CanEmbTurkey"
+              :subtitle "Twitter: @CanEmbTurkey"
               :url "https://twitter.com/CanEmbTurkey/status/447118377434497024"
               :perspective "test4"
             }
@@ -120,7 +120,7 @@
              {
               :type "twitter"
               :title "A Chinese satellite has spotted a large object floating in the Indian Ocean"
-              :subtitle "@mashable"
+              :subtitle "Twitter: @mashable"
               :url "https://twitter.com/mashable/status/447358098454634496"
               :perspective "Search efforts"
             }
@@ -162,7 +162,7 @@
             {
               :type "twitter"
               :title "A look at the vessels involved in the search for #MH370"
-              :subtitle "@WSJ"
+              :subtitle "Twitter: @WSJ"
               :url "https://twitter.com/WSJ/status/446934319588970496/photo/1"
               :perspective "Background"
             }
@@ -204,7 +204,7 @@
                 {
               :type "twitter"
               :title "From the heart of a child. #MH370 by my 7-yr-old nephew."
-              :subtitle "@muslimah_rose"
+              :subtitle "Twitter: @muslimah_rose"
               :url "https://twitter.com/muslimah_rose/status/446918869777526784/photo/1"
               :perspective "Hope"
             }
@@ -403,56 +403,56 @@
             {
               :type "twittter"
               :title "Russia forces at Belbek base searching every media team for memory cards, confiscating them"
-              :subtitle "@MarquardtA"
+              :subtitle "Twitter: @MarquardtA"
               :url "https://twitter.com/MarquardtA/status/447404133826703360"
               :perspective "US view"
             }
             {
               :type "twitter"
               :title "Russian troops storm Ukrainian bases in Crimea"
-              :subtitle "@MarquardtA"
+              :subtitle "Twitter: @MarquardtA"
               :url "https://twitter.com/MarquardtA/status/447425970564505600"
               :perspective "US view"
             }
             {
               :type "twitter"
               :title "Russian forces have taken control of Ukraine's only submarine in Crimea"
-              :subtitle "@JustHovensGreve"
+              :subtitle "Twitter: @JustHovensGreve"
               :url "https://twitter.com/JustHovensGreve/status/447408008608223233"
               :perspective "European view"
             }
             {
               :type "twitter"
               :title "Broken gate at Belbek base Crimea after Russia armored vehicle smashed through"
-              :subtitle "@herszenhorn"
+              :subtitle "Twitter: @herszenhorn"
               :url "https://twitter.com/herszenhorn/status/447415509701918720"
               :perspective "US view"
             }
             {
               :type "twitter"
               :title "Vladimir Putin discussed the situation in Ukraine, US sanctions with the Russian Security Council permanent members"
-              :subtitle "@KremlinRussia_E"
+              :subtitle "Twitter: @KremlinRussia_E"
               :url "https://twitter.com/KremlinRussia_E/status/446978947960827904"
               :perspective "Russian view"
             }
             {
               :type "twitter"
               :title "Ceremony signing the laws on admitting Crimea and Sevastopol to the Russian Federation"
-              :subtitle "@KremlinRussia_E"
+              :subtitle "Twitter: @KremlinRussia_E"
               :url "https://twitter.com/KremlinRussia_E/status/447015923632070658"
               :perspective "Russian view"
             }
             {
               :type "twitter"
               :title "Photo: Shopping in Crimea"
-              :subtitle "@joshbearman"
+              :subtitle "Twitter: @joshbearman"
               :url "https://twitter.com/joshbearman/status/446682844601925633"
               :perspective "US view"
             }
             {
               :type "twitter"
               :title "No mercy for journalists. We are photographed, colleagues are ripped of papers"
-              :subtitle "@DEmmerich"
+              :subtitle "Twitter: @DEmmerich"
               :url "https://twitter.com/DEmmerich/status/447413040489975808"
               :perspective "European view"
             }
@@ -543,7 +543,7 @@
             {
               :type "twitter"
               :title "No mercy for journalists. We are photographed, colleagues are ripped of papers"
-              :subtitle "@DEmmerich"
+              :subtitle "Twitter: @DEmmerich"
               :url "https://twitter.com/DEmmerich/status/447413040489975808"
               :perspective "European view"
             }

@@ -44,11 +44,10 @@
 
 (defn persp-to-color [p]
   (case p
-    "Hope" {:hex "1abc9c"} 
-    "Ukrainian view" {:hex "7f8c8d" :bright false} 
-    "Conspiracy"  {:hex "ecf0f1"} 
-    "Russian view" {:hex "bdc3c7"}
-    "test1" {:hex "2ecc71"}
+    "European view" {:hex "e74c3c"} 
+    "Ukrainian view" {:hex "f1c40f" :bright false} 
+    "US view"  {:hex "2980b9"} 
+    "Russian view" {:hex "27ae60"}
     {:hex "f1c40f"}))
 
 (defn get-radians [inet]
@@ -75,7 +74,7 @@
     (html [:rect.spot {:onMouseOver #(update-current-hover {:title title :subtitle subtitle} state)
                        :fill (str "#" color) :x 0 :y 0
                        :transform (str "translate(" (first coord) " " (second coord) "), rotate(" rotates ")") 
-                       :width "80px" :height "7px"}])))
+                       :width "80px" :height "4px"}])))
 
 (defn circle [state owner]
   (reify
@@ -89,8 +88,9 @@
       (let [circle-data
              (map (fn [el] 
                      (assoc el :color (:hex (persp-to-color (:perspective el)))))
-               (sort-by #(:perspective %) (second (first (:articles state))))
+               (sort-by #(:perspective %) (:Crimea (:articles state)))
                )
+
             viewport {:vwidth (.-innerWidth js/window)
                       :vheight (.-innerHeight js/window)}
 

@@ -25,7 +25,7 @@
      :selected-article ""
      :urls [test-url]
      :article-info []
-     :current-topic "TwitterBlock"
+     :current-topic "Crimea"
      :next-topic "NSA"
      :articles newswheel.data/data
      }
