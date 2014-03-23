@@ -9,7 +9,7 @@
                  [om "0.5.3"]
                  [net.drib/strokes "0.5.1"]
                  [sablono "0.2.6"]
-                 [enlive "1.1.5"]
+                 [hickory "0.5.3"]
                  [com.facebook/react "0.9.0.1"]]
 
   :plugins [[lein-cljsbuild "1.0.2"]]

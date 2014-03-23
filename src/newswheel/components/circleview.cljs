@@ -2,6 +2,9 @@
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
             [sablono.core :as html :refer-macros [html]]
+            [goog.string :as gstring] 
+            [clojure.string :as string] 
+            [goog.string.format :as gformat]
             [strokes :refer [d3]]))
 
 (strokes/bootstrap)
