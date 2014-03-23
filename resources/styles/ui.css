@@ -23,6 +23,8 @@ body {
 }
 .container .circle-view .spot:hover {
   fill: #fff;
+  stroke: #fff;
+  stroke-width: 6px;
 }
 .container .circle-view #circletext {
   width: 20em;
@@ -92,18 +94,31 @@ body {
   overflow-x: hidden;
   transition: all 0.3s ease-out;
 }
-.container #reader:hover {
-  width: 30.3em;
-}
 .container #reader section {
-  min-height: 100vh;
+  height: 100vh;
   padding: 2em;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
 }
-.container #reader section h3,
-.container #reader section h5 {
+.container #reader section .head {
+  height: 7em;
+}
+.container #reader section .head h3,
+.container #reader section .head h5 {
   margin-bottom: 0.6em;
   line-height: 1.5em;
 }
-.container #reader section h5 {
+.container #reader section .head h5 {
   font-weight: normal;
+}
+.container #reader section .body {
+  flex: 1 1 auto;
+  -webkit-flex: 1 1 auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.container #reader section .body p {
+  margin-bottom: 1em;
 }
