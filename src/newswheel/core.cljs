@@ -20,7 +20,8 @@
 
 (def app-state
   (atom
-    {:hover-article ""
+    {:hover-article {:title ""
+                     :subtitle ""}
      :selected-article ""
      :urls [test-url]
      :article-info []
